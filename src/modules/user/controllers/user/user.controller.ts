@@ -1,4 +1,4 @@
-import { Controller, Inject, Post,Body, Get, Param, Delete, Patch } from '@nestjs/common';
+import { Controller, Inject, Post,Body, Get, Param, Delete, Patch, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UserService } from '../../services/user/user.service';
 import { CreateUserDto } from '../../dtos/createUser.dto';
 import { UpdateUserDto } from '../../dtos/UpdateUserDto.dto';
@@ -15,7 +15,9 @@ export class UserController {
     }
 
     @Post('create')
+    @UsePipes(ValidationPipe)
     createUser(@Body() createUserDto : CreateUserDto){
+        console.log("Hi")
         return this.userService.createUser(createUserDto)
     }
 

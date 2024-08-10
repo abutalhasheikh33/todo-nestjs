@@ -9,7 +9,8 @@ export class User extends BaseEntity {
     _id : string
 
     @Column({
-        nullable:false
+        nullable:false,
+        unique:true
     })
     email : string
 

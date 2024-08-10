@@ -11,6 +11,8 @@ export class EncryptPasswordMiddleware implements NestMiddleware {
 
     async use(req: Request, res: Response, next: NextFunction) {
         
+        if(req.body.password && req.body.password.length<10) { next(); return; }
+
         if(req.body.password){
            const saltRounds = 10;
            const hashedPassword = bcrypt.hashSync(req.body.password,saltRounds);
@@ -19,6 +21,7 @@ export class EncryptPasswordMiddleware implements NestMiddleware {
         }else if(req.route?.path?.startsWith("/api/users/create")) {
             throw new NotFoundException('Password Not Found')
         }
+        
        
         
     }
