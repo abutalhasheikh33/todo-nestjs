@@ -9,7 +9,7 @@ import { UserController } from './modules/user/controllers/user/user.controller'
 @Module({
   imports: [UserModule,ConfigModule.forRoot({
     isGlobal: true, 
-    envFilePath: `.env.development`, // Selects the environment file based on NODE_ENV
+    envFilePath: `.env.development.local`, // Selects the environment file based on NODE_ENV
   }),UserModule,TypeOrmModule.forRoot({
     type: 'postgres',
     host: 'localhost',
